@@ -11,13 +11,13 @@ export function Footer() {
         {/* Documentation Links */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm">
           <a
-            href="https://cofhe-docs.fhenix.zone/docs/devdocs/overview"
+            href="https://cofhe-docs.LuxFHE.zone/docs/devdocs/overview"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-white hover:text-fhenix-cyan transition-colors"
+            className="flex items-center gap-2 text-white hover:text-LuxFHE-cyan transition-colors"
           >
             <span>Learn more from</span>
-            <span className="font-semibold">Fhenix Docs</span>
+            <span className="font-semibold">LuxFHE Docs</span>
             <svg
               className="w-3 h-3"
               fill="none"
@@ -39,7 +39,7 @@ export function Footer() {
             href="https://docs.base.org/mini-apps/quickstart/building-for-the-base-app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-white hover:text-fhenix-cyan transition-colors"
+            className="flex items-center gap-2 text-white hover:text-LuxFHE-cyan transition-colors"
           >
             <span>Learn more from</span>
             <span className="font-semibold">Base Docs</span>
@@ -63,14 +63,14 @@ export function Footer() {
         <div className="flex items-center space-x-6">
           <div className="flex items-center space-x-2">
             <Link
-              href="https://www.fhenix.io/"
+              href="https://www.LuxFHE.io/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:opacity-80 transition-opacity"
             >
               <Image
-                src="/fhenix_logo_dark.svg"
-                alt="Fhenix"
+                src="/LuxFHE_logo_dark.svg"
+                alt="LuxFHE"
                 width={64}
                 height={16}
                 className="h-4 w-auto"
@@ -80,7 +80,7 @@ export function Footer() {
 
           <div className="flex items-center space-x-3">
             <a
-              href="https://x.com/Fhenix"
+              href="https://x.com/LuxFHE"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"
@@ -134,7 +134,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="text-xs text-gray-400">
-          © 2025 Fhenix. All rights reserved.
+          © 2025 LuxFHE. All rights reserved.
         </div>
       </div>
     </footer>

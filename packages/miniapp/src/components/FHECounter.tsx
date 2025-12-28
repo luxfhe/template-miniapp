@@ -113,7 +113,7 @@ const EncryptedValue = <T extends FheTypes>({
               {content.split("").map((char, idx) => (
                 <span
                   key={idx}
-                  className={char === "*" ? "text-fhenix-cyan" : ""}
+                  className={char === "*" ? "text-LuxFHE-cyan" : ""}
                 >
                   {char}
                 </span>
@@ -121,7 +121,7 @@ const EncryptedValue = <T extends FheTypes>({
             </span>
           </div>
           {showHint && (
-            <span className="text-xs sm:text-sm text-fhenix-cyan font-(family-name:--font-clash) opacity-70">
+            <span className="text-xs sm:text-sm text-LuxFHE-cyan font-(family-name:--font-clash) opacity-70">
               Click to decrypt
             </span>
           )}
@@ -306,7 +306,7 @@ const SetCounterRow = ({
                 disabled={isPending || isDisabled || !input}
               >
                 {isPending && (
-                  <span className="inline-block w-4 h-4 border-2 border-fhenix-dark border-t-transparent rounded-full animate-spin mr-2"></span>
+                  <span className="inline-block w-4 h-4 border-2 border-LuxFHE-dark border-t-transparent rounded-full animate-spin mr-2"></span>
                 )}
                 Reset
               </button>
@@ -378,7 +378,7 @@ const IncrementButton = ({
               disabled={isPending || isDisabled}
             >
               {isPending && (
-                <span className="inline-block w-4 h-4 border-2 border-fhenix-dark border-t-transparent rounded-full animate-spin mr-2"></span>
+                <span className="inline-block w-4 h-4 border-2 border-LuxFHE-dark border-t-transparent rounded-full animate-spin mr-2"></span>
               )}
               Increment
             </button>
@@ -449,7 +449,7 @@ const DecrementButton = ({
               disabled={isPending || isDisabled}
             >
               {isPending && (
-                <span className="inline-block w-4 h-4 border-2 border-fhenix-dark border-t-transparent rounded-full animate-spin mr-2"></span>
+                <span className="inline-block w-4 h-4 border-2 border-LuxFHE-dark border-t-transparent rounded-full animate-spin mr-2"></span>
               )}
               Decrement
             </button>
@@ -493,7 +493,7 @@ const EncryptedCounterDisplay = ({
           onClick={() => setShowTooltip(!showTooltip)}
           onTouchStart={() => setShowTooltip(!showTooltip)}
         >
-          <InfoIcon className="w-3 h-3 sm:w-4 sm:h-4 text-fhenix-cyan cursor-help" />
+          <InfoIcon className="w-3 h-3 sm:w-4 sm:h-4 text-LuxFHE-cyan cursor-help" />
           {showTooltip && (
             <div
               className="absolute bottom-full left-0 mb-2 px-3 py-2 text-xs text-white bg-gray-900 rounded whitespace-nowrap z-10 font-(family-name:--font-clash)"

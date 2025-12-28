@@ -55,15 +55,15 @@ export default function Home() {
   }, [setFrameReady, isFrameReady]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-linear-to-b from-fhenix-dark via-slate-950 to-fhenix-dark">
+    <div className="min-h-screen flex flex-col bg-linear-to-b from-LuxFHE-dark via-slate-950 to-LuxFHE-dark">
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-2xl">
           <div className="space-y-8 text-center">
             <div className="relative z-10 space-y-8">
               <div className="flex flex-col items-center justify-center gap-10">
                 <Image
-                  src="/fhenix_logo_dark.svg"
-                  alt="Fhenix"
+                  src="/LuxFHE_logo_dark.svg"
+                  alt="LuxFHE"
                   width={400}
                   height={100}
                   className="w-80 md:w-96"
@@ -100,7 +100,7 @@ export default function Home() {
                 >
                   {isGeneratingPermit ? (
                     <>
-                      <div className="animate-spin rounded-full h-3 w-3 border-2 border-fhenix-dark border-t-transparent"></div>
+                      <div className="animate-spin rounded-full h-3 w-3 border-2 border-LuxFHE-dark border-t-transparent"></div>
                       <span>Generating...</span>
                     </>
                   ) : (

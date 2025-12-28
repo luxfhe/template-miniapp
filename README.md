@@ -1,6 +1,6 @@
 # CoFHE MiniApp Template
 
-A fully-featured template for building privacy-preserving decentralized applications using **Fhenix CoFHE (Confidential on Fully Homomorphic Encryption)** and **Base MiniApps**. This template demonstrates how to integrate Fully Homomorphic Encryption (FHE) into a Base or Farcaster MiniApp, allowing users to interact with encrypted on-chain data without ever revealing the actual values.
+A fully-featured template for building privacy-preserving decentralized applications using **LuxFHE CoFHE (Confidential on Fully Homomorphic Encryption)** and **Base MiniApps**. This template demonstrates how to integrate Fully Homomorphic Encryption (FHE) into a Base or Farcaster MiniApp, allowing users to interact with encrypted on-chain data without ever revealing the actual values.
 
 ## 🎯 Purpose
 
@@ -225,7 +225,7 @@ The Hardhat package handles smart contract development and deployment for CoFHE-
 
 #### Key Features
 
-- **CoFHE Integration**: Uses `@fhenixprotocol/cofhe-contracts` for FHE operations
+- **CoFHE Integration**: Uses `@luxfheprotocol/cofhe-contracts` for FHE operations
 - **Network Support**: Configured for Ethereum Sepolia, Arbitrum Sepolia, and Base Sepolia
 - **Testing**: Includes test suite for encrypted operations
 - **Deployment Tasks**: Custom Hardhat tasks for contract interaction
@@ -508,8 +508,8 @@ The MiniApp can be deployed to Vercel, Netlify, or any platform supporting Next.
 
 ## 🔗 Important Links
 
-### Fhenix Documentation
-- **Main Docs**: [https://docs.fhenix.zone](https://docs.fhenix.zone)
+### LuxFHE Documentation
+- **Main Docs**: [https://docs.luxfhe.zone](https://docs.luxfhe.zone)
 
 ### Base & MiniApp Documentation
 - **Base Docs**: [https://docs.base.org](https://docs.base.org)
@@ -518,7 +518,7 @@ The MiniApp can be deployed to Vercel, Netlify, or any platform supporting Next.
 - **Farcaster Docs**: [https://docs.farcaster.xyz](https://docs.farcaster.xyz)
 
 ### Additional Resources
-- **CoFHE Contracts**: [https://github.com/FhenixProtocol/cofhe-contracts](https://github.com/FhenixProtocol/cofhe-contracts)
+- **CoFHE Contracts**: [https://github.com/LuxFHEProtocol/cofhe-contracts](https://github.com/LuxFHEProtocol/cofhe-contracts)
 
 ---
 
@@ -598,7 +598,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 💬 Support
 
 For questions and support:
-- Fhenix Discord: [https://discord.gg/fhenix](https://discord.gg/fhenix)
-- Fhenix Telegram: [https://t.me/FhenixOfficial](https://t.me/+OEO4CItQYh8xYzNh)
-- Documentation: [https://docs.fhenix.zone](https://docs.fhenix.zone)
+- LuxFHE Discord: [https://discord.gg/luxfhe](https://discord.gg/luxfhe)
+- LuxFHE Telegram: [https://t.me/LuxFHEOfficial](https://t.me/+OEO4CItQYh8xYzNh)
+- Documentation: [https://docs.luxfhe.zone](https://docs.luxfhe.zone)
 

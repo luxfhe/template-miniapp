@@ -17,7 +17,7 @@ export const minikitConfig = {
   },
   miniapp: {
     version: "1",
-    name: "Fhenix MiniApp Demo",
+    name: "LuxFHE MiniApp Demo",
     subtitle: "Privacy onchain",
     description: "Experience Fully Homomorphic Encryption powered dApps",
     screenshotUrls: [`${ROOT_URL}/screenshot-portrait.png`],
@@ -27,10 +27,10 @@ export const minikitConfig = {
     homeUrl: ROOT_URL,
     webhookUrl: `${ROOT_URL}/api/webhook`,
     primaryCategory: "social",
-    tags: ["fhenix", "fhe", "encryption", "privacy", "defi"],
+    tags: ["luxfhe", "fhe", "encryption", "privacy", "defi"],
     heroImageUrl: `${ROOT_URL}/blue-hero.png`,
     tagline: "Privacy onchain",
-    ogTitle: "Fhenix MiniApp Demo",
+    ogTitle: "LuxFHE MiniApp Demo",
     ogDescription:
       "Experience confidential computing powered by Fully Homomorphic Encryption",
     ogImageUrl: `${ROOT_URL}/blue-hero.png`,

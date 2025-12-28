@@ -1,6 +1,6 @@
-# Fhenix CoFHE Hardhat Starter
+# LuxFHE CoFHE Hardhat Starter
 
-This project is a starter repository for developing FHE (Fully Homomorphic Encryption) smart contracts on the Fhenix network using CoFHE (Confidential Computing Framework for Homomorphic Encryption).
+This project is a starter repository for developing FHE (Fully Homomorphic Encryption) smart contracts on the LuxFHE network using CoFHE (Confidential Computing Framework for Homomorphic Encryption).
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ This project is a starter repository for developing FHE (Fully Homomorphic Encry
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/fhenixprotocol/cofhe-hardhat-starter.git
+git clone https://github.com/luxfheprotocol/cofhe-hardhat-starter.git
 cd cofhe-hardhat-starter
 ```
 
@@ -124,7 +124,7 @@ if (!isPermittedCofheEnvironment(hre, 'MOCK')) {
 
 ### `cofhejs`
 
-[`cofhejs`](https://github.com/FhenixProtocol/cofhejs) is the JavaScript/TypeScript library for interacting with FHE smart contracts. It provides functions for encryption, decryption, and unsealing FHE values.
+[`cofhejs`](https://github.com/LuxFHEProtocol/cofhejs) is the JavaScript/TypeScript library for interacting with FHE smart contracts. It provides functions for encryption, decryption, and unsealing FHE values.
 
 #### Key Features
 
@@ -135,7 +135,7 @@ if (!isPermittedCofheEnvironment(hre, 'MOCK')) {
 
 ### `cofhe-mock-contracts`
 
-[`cofhe-mock-contracts`](https://github.com/FhenixProtocol/cofhe-mock-contracts) provides mock implementations of CoFHE contracts for testing FHE functionality without the actual coprocessor.
+[`cofhe-mock-contracts`](https://github.com/LuxFHEProtocol/cofhe-mock-contracts) provides mock implementations of CoFHE contracts for testing FHE functionality without the actual coprocessor.
 
 #### Features
 
