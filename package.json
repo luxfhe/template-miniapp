@@ -1,0 +1,35 @@
+{
+  "name": "cofhe-miniapp-template",
+  "version": "1.0.0",
+  "description": "Cofhe + Base/miniapp template",
+  "scripts": {
+    "dev:miniapp": "cd packages/miniapp && npm run dev",
+    "build:miniapp": "cd packages/miniapp && npm run build",
+    "start:miniapp": "cd packages/miniapp && npm run start",
+    "build:hardhat": "cd packages/hardhat && npx hardhat compile",
+    "test:hardhat": "cd packages/hardhat && npx hardhat test",
+    "deploycounter:hardhat": "cd packages/hardhat && npx hardhat deploy-counter --network base-sepolia",
+    "clean": "rm -rf node_modules && cd packages/miniapp && rm -rf node_modules && cd ../hardhat && rm -rf node_modules",
+    "install:all": "npm install && cd packages/miniapp && npm install && cd ../hardhat && npm install"
+  },
+  "keywords": [
+    "cofhe",
+    "fhe",
+    "privacy",
+    "blockchain",
+    "ethereum",
+    "smart-contracts",
+    "base",
+    "miniapp",
+    "farcaster"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "cofhejs": "^0.3.1"
+  }
+}
