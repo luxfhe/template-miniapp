@@ -1,8 +1,8 @@
 import { task } from 'hardhat/config'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { Counter } from '../typechain-types'
-import { cofhejs, Encryptable, EncryptStep } from 'cofhejs/node'
-import { cofhejs_initializeWithHardhatSigner } from 'cofhe-hardhat-plugin'
+import { fhe, Encryptable, EncryptStep } from '@luxfhe/sdk/node'
+import { fhe_initializeWithHardhatSigner } from 'fhe-hardhat-plugin'
 import { getDeployment } from './utils'
 
 // Task to reset the counter with an encrypted input
@@ -22,7 +22,7 @@ task('reset-counter', 'reset the counter').setAction(async (_, hre: HardhatRunti
 	// Get the signer
 	const [signer] = await ethers.getSigners()
 	console.log(`Using account: ${signer.address}`)
-	await cofhejs_initializeWithHardhatSigner(signer)
+	await fhe_initializeWithHardhatSigner(signer)
 
 	// Get the contract instance with proper typing
 	const Counter = await ethers.getContractFactory('Counter')
@@ -32,7 +32,7 @@ task('reset-counter', 'reset the counter').setAction(async (_, hre: HardhatRunti
 		console.log(`Log Encrypt State :: ${state}`)
 	}
 
-	const encryptedValue = await cofhejs.encrypt([Encryptable.uint32('2000')] as const, logState)
+	const encryptedValue = await fhe.encrypt([Encryptable.uint32('2000')] as const, logState)
 
 	if (encryptedValue && encryptedValue.data) {
 		console.log('Resetting counter...')

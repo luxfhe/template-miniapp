@@ -11,7 +11,7 @@ export function Footer() {
         {/* Documentation Links */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-sm">
           <a
-            href="https://cofhe-docs.LuxFHE.zone/docs/devdocs/overview"
+            href="https://fhe-docs.LuxFHE.zone/docs/devdocs/overview"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-white hover:text-LuxFHE-cyan transition-colors"

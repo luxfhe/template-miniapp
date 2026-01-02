@@ -12,8 +12,8 @@ This project is a starter repository for developing FHE (Fully Homomorphic Encry
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/luxfheprotocol/cofhe-hardhat-starter.git
-cd cofhe-hardhat-starter
+git clone https://github.com/luxfheprotocol/fhe-hardhat-starter.git
+cd fhe-hardhat-starter
 ```
 
 2. Install dependencies:
@@ -30,14 +30,14 @@ pnpm install
 - `pnpm clean` - Clean the project artifacts
 - `pnpm test` - Run tests on the local CoFHE network
 - `pnpm test:hardhat` - Run tests on the Hardhat network
-- `pnpm test:localcofhe` - Run tests on the local CoFHE network
+- `pnpm test:localfhe` - Run tests on the local CoFHE network
 
 ### Local CoFHE Network
 
-- `pnpm localcofhe:start` - Start a local CoFHE network
-- `pnpm localcofhe:stop` - Stop the local CoFHE network
-- `pnpm localcofhe:faucet` - Get test tokens from the faucet
-- `pnpm localcofhe:deploy` - Deploy contracts to the local CoFHE network
+- `pnpm localfhe:start` - Start a local CoFHE network
+- `pnpm localfhe:stop` - Stop the local CoFHE network
+- `pnpm localfhe:faucet` - Get test tokens from the faucet
+- `pnpm localfhe:deploy` - Deploy contracts to the local CoFHE network
 
 ### Contract Tasks
 
@@ -54,19 +54,19 @@ pnpm install
 - `test/` - Test files
 - `ignition/` - Hardhat Ignition deployment modules
 
-## `cofhejs` and `cofhe-hardhat-plugin`
+## `fhe` and `fhe-hardhat-plugin`
 
-This project uses cofhejs and the CoFHE Hardhat plugin to interact with FHE (Fully Homomorphic Encryption) smart contracts. Here are the key features and utilities:
+This project uses fhe and the CoFHE Hardhat plugin to interact with FHE (Fully Homomorphic Encryption) smart contracts. Here are the key features and utilities:
 
-### cofhejs Features
+### fhe Features
 
 - **Encryption/Decryption**: Encrypt and decrypt values using FHE
 
   ```typescript
-  import { cofhejs, Encryptable, FheTypes } from 'cofhejs/node'
+  import { fhe, Encryptable, FheTypes } from 'fhe/node'
 
   // Encrypt a value
-  const [encryptedInput] = await cofhejs.encrypt(
+  const [encryptedInput] = await fhe.encrypt(
   	(step) => {
   		console.log(`Encrypt step - ${step}`)
   	},
@@ -74,34 +74,34 @@ This project uses cofhejs and the CoFHE Hardhat plugin to interact with FHE (Ful
   )
 
   // Decrypt a value
-  const decryptedResult = await cofhejs.decrypt(encryptedValue, FheTypes.Uint32)
+  const decryptedResult = await fhe.decrypt(encryptedValue, FheTypes.Uint32)
   ```
 
 - **Unsealing**: Unseal encrypted values from the blockchain
   ```typescript
-  const unsealedResult = await cofhejs.unseal(encryptedValue, FheTypes.Uint32)
+  const unsealedResult = await fhe.unseal(encryptedValue, FheTypes.Uint32)
   ```
 
-### `cofhe-hardhat-plugin` Features
+### `fhe-hardhat-plugin` Features
 
-- **Network Configuration**: Automatically configures the cofhe enabled networks
+- **Network Configuration**: Automatically configures the fhe enabled networks
 - **Wallet Funding**: Automatically funds wallets on the local network
 
   ```typescript
-  import { localcofheFundWalletIfNeeded } from 'cofhe-hardhat-plugin'
-  await localcofheFundWalletIfNeeded(hre, walletAddress)
+  import { localfheFundWalletIfNeeded } from 'fhe-hardhat-plugin'
+  await localfheFundWalletIfNeeded(hre, walletAddress)
   ```
 
-- **Signer Initialization**: Initialize cofhejs with a Hardhat signer
+- **Signer Initialization**: Initialize fhe with a Hardhat signer
 
   ```typescript
-  import { cofhejs_initializeWithHardhatSigner } from 'cofhe-hardhat-plugin'
-  await cofhejs_initializeWithHardhatSigner(signer)
+  import { fhe_initializeWithHardhatSigner } from 'fhe-hardhat-plugin'
+  await fhe_initializeWithHardhatSigner(signer)
   ```
 
 - **Testing Utilities**: Helper functions for testing FHE contracts
   ```typescript
-  import { expectResultSuccess, expectResultValue, mock_expectPlaintext, isPermittedCofheEnvironment } from 'cofhe-hardhat-plugin'
+  import { expectResultSuccess, expectResultValue, mock_expectPlaintext, isPermittedFHEEnvironment } from 'fhe-hardhat-plugin'
   ```
 
 ### Environment Configuration
@@ -115,16 +115,16 @@ The plugin supports different environments:
 You can check the current environment using:
 
 ```typescript
-if (!isPermittedCofheEnvironment(hre, 'MOCK')) {
+if (!isPermittedFHEEnvironment(hre, 'MOCK')) {
 	// Skip test or handle accordingly
 }
 ```
 
 ## Links and Additional Resources
 
-### `cofhejs`
+### `fhe`
 
-[`cofhejs`](https://github.com/LuxFHEProtocol/cofhejs) is the JavaScript/TypeScript library for interacting with FHE smart contracts. It provides functions for encryption, decryption, and unsealing FHE values.
+[`fhe`](https://github.com/LuxFHEProtocol/fhe) is the JavaScript/TypeScript library for interacting with FHE smart contracts. It provides functions for encryption, decryption, and unsealing FHE values.
 
 #### Key Features
 
@@ -133,9 +133,9 @@ if (!isPermittedCofheEnvironment(hre, 'MOCK')) {
 - Managing permits for secure contract interactions
 - Integration with Web3 libraries (ethers.js and viem)
 
-### `cofhe-mock-contracts`
+### `fhe-mock-contracts`
 
-[`cofhe-mock-contracts`](https://github.com/LuxFHEProtocol/cofhe-mock-contracts) provides mock implementations of CoFHE contracts for testing FHE functionality without the actual coprocessor.
+[`fhe-mock-contracts`](https://github.com/LuxFHEProtocol/fhe-mock-contracts) provides mock implementations of CoFHE contracts for testing FHE functionality without the actual coprocessor.
 
 #### Features
 
@@ -147,19 +147,19 @@ if (!isPermittedCofheEnvironment(hre, 'MOCK')) {
 - Synchronous operation simulation with mock delays
 - On-chain access to unencrypted values for testing
 
-#### Integration with Hardhat and cofhejs
+#### Integration with Hardhat and fhe
 
-Both `cofhejs` and `cofhe-hardhat-plugin` interact directly with the mock contracts:
+Both `fhe` and `fhe-hardhat-plugin` interact directly with the mock contracts:
 
-- When imported in `hardhat.config.ts`, `cofhe-hardhat-plugin` injects necessary mock contracts into the Hardhat testnet
-- `cofhejs` automatically detects mock contracts and adjusts behavior for test environments
+- When imported in `hardhat.config.ts`, `fhe-hardhat-plugin` injects necessary mock contracts into the Hardhat testnet
+- `fhe` automatically detects mock contracts and adjusts behavior for test environments
 
 #### Mock Behavior Differences
 
 - **Symbolic Execution**: In mocks, ciphertext hashes point to plaintext values stored on-chain
 - **On-chain Decryption**: Mock decryption adds simulated delays to mimic real behavior
 - **ZK Verification**: Mock verifier handles on-chain storage of encrypted inputs
-- **Off-chain Decryption**: When using `cofhejs.unseal()`, mocks return plaintext values directly from on-chain storage
+- **Off-chain Decryption**: When using `fhe.unseal()`, mocks return plaintext values directly from on-chain storage
 
 ## License
 

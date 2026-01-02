@@ -1,25 +1,25 @@
 {
-	"name": "cofhe-hardhat-starter",
+	"name": "luxfhe-hardhat-starter",
 	"version": "0.3.1",
-	"description": "Starter repository for luxfhe CoFHE contract development",
+	"description": "Starter repository for luxfhe LuxFHE contract development",
 	"scripts": {
 		"test": "REPORT_GAS=true hardhat test",
-		"clean": "rimraf ./artifacts ./cache ./coverage ./types ./coverage.json ./deployments/localcofhe",
+		"clean": "rimraf ./artifacts ./cache ./coverage ./types ./coverage.json ./deployments/localluxfhe",
 		"compile": "hardhat compile",
 		"--------------": "",
-		" --- cofhe ---": "",
+		" --- luxfhe ---": "",
 		"  --------------": "",
 		"// task:deploy": "hardhat deploy",
 		"// task:addCount": "hardhat task:addCount",
 		"// task:getCount": "hardhat task:getCount",
 		"// ------------------- ": "",
-		"//  --- localcofhe ---": "",
+		"//  --- localluxfhe ---": "",
 		"//    -------------------": "",
-		"// localcofhe:start": "hardhat localcofhe:start --clean true",
-		"localcofhe:test": "REPORT_GAS=true hardhat test --network localcofhe",
-		"localcofhe:faucet": "hardhat task:cofhe:usefaucet --network localcofhe",
-		"// localcofhe:deploy": "hardhat deploy --network localcofhe",
-		"// localcofhe:stop": "hardhat localcofhe:stop",
+		"// localluxfhe:start": "hardhat localluxfhe:start --clean true",
+		"localluxfhe:test": "REPORT_GAS=true hardhat test --network localluxfhe",
+		"localluxfhe:faucet": "hardhat task:luxfhe:usefaucet --network localluxfhe",
+		"// localluxfhe:deploy": "hardhat deploy --network localluxfhe",
+		"// localluxfhe:stop": "hardhat localluxfhe:stop",
 		"// --------------------": "",
 		"//  --- sepolia ---": "",
 		"//   --------------------": "",
@@ -35,17 +35,17 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/luxfhe/cofhe-hardhat-starter.git"
+		"url": "git+https://github.com/luxfhe/luxfhe-hardhat-starter.git"
 	},
 	"author": "luxfhe",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/luxfhe/cofhe-hardhat-starter/issues"
+		"url": "https://github.com/luxfhe/luxfhe-hardhat-starter/issues"
 	},
-	"homepage": "https://github.com/luxfhe/cofhe-hardhat-starter#readme",
+	"homepage": "https://github.com/luxfhe/luxfhe-hardhat-starter#readme",
 	"devDependencies": {
-		"@luxfhe/cofhe-contracts": "^0.0.13",
-		"@luxfhe/cofhe-mock-contracts": "^0.3.1",
+		"@luxfhe/contracts": "^0.0.13",
+		"@luxfhe/mock-contracts": "^0.3.1",
 		"@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
 		"@nomicfoundation/hardhat-ethers": "^3.0.0",
 		"@nomicfoundation/hardhat-ignition": "^0.15.0",
@@ -61,8 +61,8 @@
 		"@types/mocha": ">=9.1.0",
 		"@types/node": ">=18.0.0",
 		"chai": "^4.2.0",
-		"cofhe-hardhat-plugin": "^0.3.1",
-		"cofhejs": "^0.3.1",
+		"@luxfhe/hardhat-plugin": "^0.3.1",
+		"@luxfhe/sdk": "^0.3.1",
 		"dotenv": "^16.4.7",
 		"ethers": "^6.4.0",
 		"hardhat": "^2.22.19",
@@ -73,9 +73,9 @@
 		"typescript": ">=4.5.0"
 	},
 	"devDependencies2": {
-		"@luxfhe/cofhe-contracts": "0.0.13",
-		"@luxfhe/cofhe-mock-contracts": "^0.3.0",
-		"cofhe-hardhat-plugin": "^0.3.0",
-		"cofhejs": "^0.3.0"
+		"@luxfhe/contracts": "0.0.13",
+		"@luxfhe/mock-contracts": "^0.3.0",
+		"@luxfhe/hardhat-plugin": "^0.3.0",
+		"@luxfhe/sdk": "^0.3.0"
 	}
 }

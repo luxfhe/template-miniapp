@@ -26,7 +26,7 @@ The template includes a simple **encrypted counter** example that demonstrates t
 This is a **monorepo** containing two main packages:
 
 ```
-cofhe-miniapp-template/
+fhe-miniapp-template/
 ├── packages/
 │   ├── hardhat/          # Smart contract development
 │   └── miniapp/          # Next.js MiniApp frontend
@@ -225,7 +225,7 @@ The Hardhat package handles smart contract development and deployment for CoFHE-
 
 #### Key Features
 
-- **CoFHE Integration**: Uses `@luxfheprotocol/cofhe-contracts` for FHE operations
+- **CoFHE Integration**: Uses `@luxfheprotocol/fhe-contracts` for FHE operations
 - **Network Support**: Configured for Ethereum Sepolia, Arbitrum Sepolia, and Base Sepolia
 - **Testing**: Includes test suite for encrypted operations
 - **Deployment Tasks**: Custom Hardhat tasks for contract interaction
@@ -307,12 +307,12 @@ const { isConnected } = useAccount();
 
 ##### Step 2: ⚙️ Initialize CoFHE
 
-**File**: `src/hooks/useCofhe.ts`
+**File**: `src/hooks/useFHE.ts`
 
 Initialize the CoFHE client to enable encryption/decryption operations:
 
 ```typescript
-const { isInitialized, isInitializing } = useCofhe();
+const { isInitialized, isInitializing } = useFHE();
 ```
 
 **What happens**:
@@ -323,7 +323,7 @@ const { isInitialized, isInitializing } = useCofhe();
 
 **Key Configuration**:
 ```typescript
-await cofhejs.initializeWithViem({
+await fhe.initializeWithViem({
   viemClient: publicClient,
   viemWalletClient: walletClient,
   environment: "TESTNET",
@@ -355,7 +355,7 @@ await generatePermit();
 
 **Permit Configuration**:
 ```typescript
-await cofhejs.createPermit({
+await fhe.createPermit({
   type: "self",
   name: "MiniApp Name",
   issuer: userAddress,
@@ -373,7 +373,7 @@ Encrypt user input and send it to the smart contract:
 
 ```typescript
 // 1. Encrypt the user's input
-const encryptedInput = await cofhejs.encrypt([
+const encryptedInput = await fhe.encrypt([
   Encryptable.uint32(userValue)
 ]);
 
@@ -414,7 +414,7 @@ const { data: count } = useReadContract({
 });
 
 // Decrypt locally using CoFHE
-const decryptedValue = await cofhejs.unseal(ctHash, FheTypes.Uint32);
+const decryptedValue = await fhe.unseal(ctHash, FheTypes.Uint32);
 
 if (decryptedValue.success) {
   // Display the decrypted value
@@ -445,7 +445,7 @@ The main component demonstrating all FHE operations:
 - **EncryptedValue** - Displays and decrypts encrypted values
 - **EncryptedCounterDisplay** - Wrapper for counter display
 
-##### `useCofhe.ts` Hook
+##### `useFHE.ts` Hook
 Manages CoFHE initialization:
 - Auto-initializes when wallet connects
 - Resets on chain/account changes
@@ -459,10 +459,10 @@ Manages permit lifecycle:
 - Remove/revoke permits
 - Validate permit expiration
 
-##### `cofheStore.ts`
+##### `fheStore.ts`
 Global state management:
 ```typescript
-interface CofheStore {
+interface FHEStore {
   isInitialized: boolean;
   setIsInitialized: (value: boolean) => void;
 }
@@ -518,7 +518,7 @@ The MiniApp can be deployed to Vercel, Netlify, or any platform supporting Next.
 - **Farcaster Docs**: [https://docs.farcaster.xyz](https://docs.farcaster.xyz)
 
 ### Additional Resources
-- **CoFHE Contracts**: [https://github.com/LuxFHEProtocol/cofhe-contracts](https://github.com/LuxFHEProtocol/cofhe-contracts)
+- **CoFHE Contracts**: [https://github.com/LuxFHEProtocol/fhe-contracts](https://github.com/LuxFHEProtocol/fhe-contracts)
 
 ---
 

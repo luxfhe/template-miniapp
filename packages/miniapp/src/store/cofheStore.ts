@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
-interface CofheState {
+interface FHEState {
   isInitialized: boolean;
   setIsInitialized: (isInitialized: boolean) => void;
 }
 
-export const useCofheStore = create<CofheState>(
-  (set: (state: Partial<CofheState>) => void) => ({
+export const useFHEStore = create<FHEState>(
+  (set: (state: Partial<FHEState>) => void) => ({
     isInitialized: false,
     setIsInitialized: (isInitialized: boolean) => set({ isInitialized }),
   })

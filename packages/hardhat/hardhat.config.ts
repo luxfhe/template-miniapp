@@ -1,7 +1,7 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-ethers";
-import "cofhe-hardhat-plugin";
+import "@luxfhe/hardhat-plugin";
 import * as dotenv from "dotenv";
 import "./tasks";
 
@@ -15,9 +15,9 @@ const config: HardhatUserConfig = {
     },
   },
   defaultNetwork: "hardhat",
-  // defaultNetwork: 'localcofhe',
+  // defaultNetwork: 'localfhe',
   networks: {
-    // The plugin already provides localcofhe configuration
+    // The plugin already provides localfhe configuration
 
     // Sepolia testnet configuration
     "eth-sepolia": {

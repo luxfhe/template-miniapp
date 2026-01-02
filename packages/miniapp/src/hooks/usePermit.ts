@@ -2,13 +2,13 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useAccount } from "wagmi";
-import { cofhejs, permitStore } from "cofhejs/web";
-import { useCofheStore } from "../store/cofheStore";
+import { fhe, permitStore } from "@luxfhe/sdk/web";
+import { useFHEStore } from "../store/fheStore";
 import { minikitConfig } from "../../minikit.config";
 
 export function usePermit() {
   const { address, chainId } = useAccount();
-  const { isInitialized: isCofheInitialized } = useCofheStore();
+  const { isInitialized: isFHEInitialized } = useFHEStore();
 
   const [hasValidPermit, setHasValidPermit] = useState(false);
   const [isGeneratingPermit, setIsGeneratingPermit] = useState(false);
@@ -16,21 +16,21 @@ export function usePermit() {
 
   // Check for valid permit
   const checkPermit = useCallback(() => {
-    if (!isCofheInitialized) {
+    if (!isFHEInitialized) {
       setHasValidPermit(false);
       return false;
     }
 
-    const permitResult = cofhejs?.getPermit();
+    const permitResult = fhe?.getPermit();
     const hasActivePermit = permitResult?.success && permitResult?.data;
 
     setHasValidPermit(!!hasActivePermit);
     return !!hasActivePermit;
-  }, [isCofheInitialized]);
+  }, [isFHEInitialized]);
 
   // Generate new permit
   const generatePermit = useCallback(async () => {
-    if (!isCofheInitialized || !address || isGeneratingPermit) {
+    if (!isFHEInitialized || !address || isGeneratingPermit) {
       return { success: false, error: "Not ready to generate permit" };
     }
 
@@ -42,7 +42,7 @@ export function usePermit() {
       const expirationDate = new Date();
       expirationDate.setDate(expirationDate.getDate() + 30); //
 
-      const result = await cofhejs.createPermit({
+      const result = await fhe.createPermit({
         type: "self",
         name: permitName,
         issuer: address,
@@ -68,25 +68,25 @@ export function usePermit() {
     } finally {
       setIsGeneratingPermit(false);
     }
-  }, [isCofheInitialized, address, isGeneratingPermit]);
+  }, [isFHEInitialized, address, isGeneratingPermit]);
 
   // Check for permit when CoFHE initializes
   useEffect(() => {
-    if (isCofheInitialized) {
+    if (isFHEInitialized) {
       checkPermit();
     }
-  }, [isCofheInitialized, checkPermit]);
+  }, [isFHEInitialized, checkPermit]);
 
   // Remove permit function
   const removePermit = useCallback(async () => {
-    if (!isCofheInitialized || !chainId || !address) {
+    if (!isFHEInitialized || !chainId || !address) {
       console.log("Cannot remove permit: missing required data");
       return false;
     }
 
     try {
       // Get current active permit hash
-      const activePermitResult = cofhejs?.getPermit();
+      const activePermitResult = fhe?.getPermit();
       if (!activePermitResult?.success || !activePermitResult?.data) {
         console.log("No active permit to remove");
         return false;
@@ -116,7 +116,7 @@ export function usePermit() {
       setError("Failed to remove permit");
       return false;
     }
-  }, [isCofheInitialized, chainId, address]);
+  }, [isFHEInitialized, chainId, address]);
 
   return {
     hasValidPermit,

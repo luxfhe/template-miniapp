@@ -1,7 +1,7 @@
 {
-  "name": "cofhe-miniapp-template",
+  "name": "luxfhe-miniapp-template",
   "version": "1.0.0",
-  "description": "Cofhe + Base/miniapp template",
+  "description": "LuxFHE + Base/miniapp template",
   "scripts": {
     "dev:miniapp": "cd packages/miniapp && npm run dev",
     "build:miniapp": "cd packages/miniapp && npm run build",
@@ -13,7 +13,7 @@
     "install:all": "npm install && cd packages/miniapp && npm install && cd ../hardhat && npm install"
   },
   "keywords": [
-    "cofhe",
+    "luxfhe",
     "fhe",
     "privacy",
     "blockchain",
@@ -30,6 +30,6 @@
     "npm": ">=8.0.0"
   },
   "dependencies": {
-    "cofhejs": "^0.3.1"
+    "@luxfhe/sdk": "^0.3.1"
   }
 }

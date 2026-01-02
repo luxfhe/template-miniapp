@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.25;
 
-import "@luxfhe/cofhe-contracts/FHE.sol";
+import "@luxfhe/luxfhe-contracts/FHE.sol";
 
 contract Counter {
     euint32 public count;
@@ -35,7 +35,7 @@ contract Counter {
         FHE.allowSender(count);
     }
 
-    function reset(InEuint32 memory value) public {
+    function reset(Euint32 memory value) public {
         count = FHE.asEuint32(value);
         FHE.allowThis(count);
         FHE.allowSender(count);

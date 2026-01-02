@@ -6,9 +6,9 @@ import { Footer } from "../components/Footer";
 import Image from "next/image";
 import { FHECounter } from "../components/FHECounter";
 import { usePermit } from "../hooks/usePermit";
-import { useCofheStore } from "../store/cofheStore";
+import { useFHEStore } from "../store/fheStore";
 import { useAccount } from "wagmi";
-import { useCofhe } from "../hooks/useCofhe";
+import { useFHE } from "../hooks/useFHE";
 
 export default function Home() {
   const { isFrameReady, setFrameReady, context } = useMiniKit();
@@ -21,8 +21,8 @@ export default function Home() {
     generatePermit,
     removePermit,
   } = usePermit();
-  const { isInitialized: isCofheInitialized } = useCofheStore();
-  const { isInitializing, isInitialized: _isInitialized } = useCofhe();
+  const { isInitialized: isFHEInitialized } = useFHEStore();
+  const { isInitializing, isInitialized: _isInitialized } = useFHE();
 
   const handleGeneratePermit = async () => {
     const result = await generatePermit();
@@ -86,7 +86,7 @@ export default function Home() {
               <span className="text-sm font-medium text-white">
                 {isInitializing && "Initializing CoFHE..."}
               </span>
-              {isCofheInitialized && !hasValidPermit && (
+              {isFHEInitialized && !hasValidPermit && (
                 <button
                   onClick={handleGeneratePermit}
                   disabled={hasValidPermit || isGeneratingPermit}
@@ -110,12 +110,12 @@ export default function Home() {
                   )}
                 </button>
               )}
-              {isConnected && isCofheInitialized && hasValidPermit && (
+              {isConnected && isFHEInitialized && hasValidPermit && (
                 <FHECounter />
               )}
 
               {/* Remove Permit Button */}
-              {isConnected && isCofheInitialized && hasValidPermit && (
+              {isConnected && isFHEInitialized && hasValidPermit && (
                 <button
                   onClick={handleRemovePermit}
                   className="mt-4 mb-2 inline-flex items-center gap-2 px-6 py-3 uppercase tracking-widest transition-all duration-200 hover:opacity-80 font-semibold font-(family-name:--font-clash)"

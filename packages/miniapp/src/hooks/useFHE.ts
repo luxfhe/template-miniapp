@@ -7,14 +7,14 @@ import {
   FheTypes,
   Permit,
   PermitOptions,
-  cofhejs,
+  fhe,
   permitStore,
-} from "cofhejs/web";
+} from "@luxfhe/sdk/web";
 import { Address } from "viem";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
-import { useCofheStore } from "../store/cofheStore";
+import { useFHEStore } from "../store/fheStore";
 
-interface CofheConfig {
+interface FHEConfig {
   environment: Environment;
   coFheUrl?: string;
   verifierUrl?: string;
@@ -23,14 +23,14 @@ interface CofheConfig {
   generatePermit?: boolean;
 }
 
-export function useCofhe(config?: Partial<CofheConfig>) {
+export function useFHE(config?: Partial<FHEConfig>) {
   const publicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
   const { isConnected } = useAccount();
   const {
     isInitialized: globalIsInitialized,
     setIsInitialized: setGlobalIsInitialized,
-  } = useCofheStore();
+  } = useFHEStore();
 
   const chainId = publicClient?.chain.id;
   const accountAddress = walletClient?.account.address;
@@ -74,7 +74,7 @@ export function useCofhe(config?: Partial<CofheConfig>) {
 
         // Merge default config with user-provided config
         const mergedConfig = { ...defaultConfig, ...config };
-        const result = await cofhejs.initializeWithViem({
+        const result = await fhe.initializeWithViem({
           viemClient: publicClient,
           viemWalletClient: walletClient,
           environment: "TESTNET",
@@ -86,7 +86,7 @@ export function useCofhe(config?: Partial<CofheConfig>) {
         });
 
         if (result.success) {
-          console.log("Cofhe initialized successfully");
+          console.log("FHE initialized successfully");
           setGlobalIsInitialized(true);
           setPermit(result.data);
           setError(null);
@@ -94,11 +94,11 @@ export function useCofhe(config?: Partial<CofheConfig>) {
           setError(new Error(result.error.message || String(result.error)));
         }
       } catch (err) {
-        console.error("Failed to initialize Cofhe:", err);
+        console.error("Failed to initialize FHE:", err);
         setError(
           err instanceof Error
             ? err
-            : new Error("Unknown error initializing Cofhe")
+            : new Error("Unknown error initializing FHE")
         );
       } finally {
         setIsInitializing(false);
@@ -132,7 +132,7 @@ export function useCofhe(config?: Partial<CofheConfig>) {
         setIsGeneratingPermit(true);
         setError(null);
 
-        const result = await cofhejs.createPermit(permitOptions);
+        const result = await fhe.createPermit(permitOptions);
 
         if (result.success) {
           console.log("Permit generated successfully");
@@ -161,7 +161,7 @@ export function useCofhe(config?: Partial<CofheConfig>) {
     [globalIsInitialized, accountAddress]
   );
 
-  const { createPermit: _, ...cofhejsWithoutCreatePermit } = cofhejs;
+  const { createPermit: _, ...fheWithoutCreatePermit } = fhe;
 
   return {
     isInitialized: globalIsInitialized,
@@ -171,17 +171,17 @@ export function useCofhe(config?: Partial<CofheConfig>) {
     permit,
     createPermit,
     // Expose the original library functions directly (excluding createPermit to avoid override)
-    ...cofhejsWithoutCreatePermit,
+    ...fheWithoutCreatePermit,
     FheTypes,
     Encryptable,
   };
 }
 
-export const useCofhejsInitialized = () => {
+export const useFHEjsInitialized = () => {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = cofhejs.store.subscribe((state) =>
+    const unsubscribe = fhe.store.subscribe((state) =>
       setInitialized(
         state.providerInitialized &&
           state.signerInitialized &&
@@ -190,7 +190,7 @@ export const useCofhejsInitialized = () => {
     );
 
     // Initial state
-    const initialState = cofhejs.store.getState();
+    const initialState = fhe.store.getState();
     setInitialized(
       initialState.providerInitialized &&
         initialState.signerInitialized &&
@@ -205,16 +205,16 @@ export const useCofhejsInitialized = () => {
   return initialized;
 };
 
-export const useCofhejsAccount = () => {
+export const useFHEjsAccount = () => {
   const [account, setAccount] = useState<string | null>(null);
 
   useEffect(() => {
-    const unsubscribe = cofhejs.store.subscribe((state) => {
+    const unsubscribe = fhe.store.subscribe((state) => {
       setAccount(state.account);
     });
 
     // Initial state
-    setAccount(cofhejs.store.getState().account);
+    setAccount(fhe.store.getState().account);
 
     return () => {
       unsubscribe();
@@ -224,7 +224,7 @@ export const useCofhejsAccount = () => {
   return account;
 };
 
-export const useCofhejsActivePermitHashes = () => {
+export const useFHEjsActivePermitHashes = () => {
   const [activePermitHash, setActivePermitHash] = useState<
     Record<Address, string | undefined>
   >({});
@@ -252,9 +252,9 @@ export const useCofhejsActivePermitHashes = () => {
   return useMemo(() => activePermitHash, [activePermitHash]);
 };
 
-export const useCofhejsActivePermitHash = () => {
-  const account = useCofhejsAccount();
-  const activePermitHashes = useCofhejsActivePermitHashes();
+export const useFHEjsActivePermitHash = () => {
+  const account = useFHEjsAccount();
+  const activePermitHashes = useFHEjsActivePermitHashes();
 
   return useMemo(() => {
     if (!account) return undefined;
@@ -262,11 +262,11 @@ export const useCofhejsActivePermitHash = () => {
   }, [account, activePermitHashes]);
 };
 
-export const useCofhejsActivePermit = () => {
+export const useFHEjsActivePermit = () => {
   const { chainId } = useAccount();
-  const account = useCofhejsAccount();
-  const initialized = useCofhejsInitialized();
-  const activePermitHash = useCofhejsActivePermitHash();
+  const account = useFHEjsAccount();
+  const initialized = useFHEjsInitialized();
+  const activePermitHash = useFHEjsActivePermitHash();
 
   return useMemo(() => {
     if (!account || !initialized) return undefined;
@@ -279,9 +279,9 @@ export const useCofhejsActivePermit = () => {
   }, [account, initialized, activePermitHash, chainId]);
 };
 
-export const useCofhejsAllPermits = () => {
-  const account = useCofhejsAccount();
-  const initialized = useCofhejsInitialized();
+export const useFHEjsAllPermits = () => {
+  const account = useFHEjsAccount();
+  const initialized = useFHEjsInitialized();
   const [allPermits, setAllPermits] = useState<Permit[] | undefined>(undefined);
 
   useEffect(() => {
@@ -291,8 +291,8 @@ export const useCofhejsAllPermits = () => {
     }
 
     const updatePermits = () => {
-      // Use cofhejs.getAllPermits() here as it's the correct API
-      const permitsFromStore = cofhejs.getAllPermits();
+      // Use fhe.getAllPermits() here as it's the correct API
+      const permitsFromStore = fhe.getAllPermits();
       setAllPermits(Object.values(permitsFromStore?.data ?? {}));
     };
 
@@ -312,4 +312,4 @@ export const useCofhejsAllPermits = () => {
 };
 
 // Export FheTypes directly for convenience
-export { FheTypes } from "cofhejs/web";
+export { FheTypes } from "@luxfhe/sdk/web";

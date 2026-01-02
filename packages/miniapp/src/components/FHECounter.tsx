@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState, useEffect } from "react";
-import { cofhejs, Encryptable, FheTypes } from "cofhejs/web";
+import { fhe, Encryptable, FheTypes } from "@luxfhe/sdk/web";
 import { useReadContract } from "wagmi";
 import type { ContractFunctionParameters } from "viem";
 import {
@@ -63,7 +63,7 @@ const EncryptedValue = <T extends FheTypes>({
     setIsDecrypting(true);
     setErrorMessage(null); // Clear any previous errors
     try {
-      const decryptedValue = await cofhejs.unseal(ctHash, fheType);
+      const decryptedValue = await fhe.unseal(ctHash, fheType);
       console.log(decryptedValue);
 
       if (decryptedValue.success) {
@@ -225,7 +225,7 @@ export const FHECounter = () => {
  *
  * Demonstrates the process of encrypting user input before sending it to the blockchain:
  * 1. User enters a number in the input field
- * 2. When "Set" is clicked, the number is encrypted using cofhejs
+ * 2. When "Set" is clicked, the number is encrypted using fhe
  * 3. The encrypted value is then sent to the smart contract
  *
  * This ensures the actual value is never exposed on the blockchain,
@@ -254,7 +254,7 @@ const SetCounterRow = ({
     if (!input) return [];
 
     // Encrypt the input
-    const encryptedInput = await cofhejs.encrypt([
+    const encryptedInput = await fhe.encrypt([
       Encryptable.uint32(input),
     ] as const);
 
