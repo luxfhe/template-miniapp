@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-fhenix-cyan: #0ad9dc;
-  --color-fhenix-dark: #011623;
+  --color-luxfhe-cyan: #0ad9dc;
+  --color-luxfhe-dark: #011623;
 }
 
 @layer base {
